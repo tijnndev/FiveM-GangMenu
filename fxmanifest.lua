@@ -24,3 +24,8 @@ files {
     "html/assets/fonts/justsignature/JustSignature.woff",
     "html/assets/images/*.png"
 }
+
+dependencies {
+    "es_extended",
+    "mysql-async"
+}
