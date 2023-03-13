@@ -1,6 +1,9 @@
 local PlayerData = {}
 ESX = nil
 local xPlayer, job
+local IsHandcuffed = false
+local DraggedBy = -1
+local Drag = fals
 
 Citizen.CreateThread(
 	function()
@@ -89,7 +92,7 @@ function HandcuffPlayer()
 	end
 
 	ESX.TriggerServerCallback(
-		"td_" .. Config.JobName .. "job:handcuffPlayer",
+		"td_" .. Config.Jobname .. "job:handcuffPlayer",
 		function()
 		end,
 		GetPlayerServerId(targetPlayer)
@@ -105,16 +108,16 @@ function DragPlayer()
 	end
 
 	ESX.TriggerServerCallback(
-		"td_" .. Config.JobName .. "job:drag",
+		"td_" .. Config.Jobname .. "job:drag",
 		function()
 		end,
 		GetPlayerServerId(targetPlayer)
 	)
 end
 
-RegisterNetEvent("sb_" .. Config.JobName .. "job:handcuff")
+RegisterNetEvent("td_" .. Config.Jobname .. "job:handcuff")
 AddEventHandler(
-	"sb_" .. Config.JobName .. "job:handcuff",
+	"td_" .. Config.Jobname .. "job:handcuff",
 	function()
 		IsHandcuffed = not IsHandcuffed
 		local playerPed = PlayerPedId()
@@ -160,9 +163,9 @@ AddEventHandler(
 	end
 )
 
-RegisterNetEvent("sb_" .. Config.JobName .. "job:drag")
+RegisterNetEvent("td_" .. Config.Jobname .. "job:drag")
 AddEventHandler(
-	"sb_" .. Config.JobName .. "job:drag",
+	"td_" .. Config.Jobname .. "job:drag",
 	function(dragger)
 		DraggedBy = dragger
 		Drag = not Drag
